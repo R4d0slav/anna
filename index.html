@@ -3,76 +3,95 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For You ❤️</title>
+<title>♡</title>
 
 <style>
 body {
     margin: 0;
     font-family: 'Georgia', serif;
+    background: linear-gradient(135deg, #ffd6e8, #ffeef5);
+    height: 100vh;
     overflow: hidden;
-    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    color: #fff;
+    color: #5c3a4d;
 }
 
-/* Login Screen */
-#loginBox {
+/* Card */
+.card {
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(15px);
+    padding: 40px;
+    border-radius: 25px;
     text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    max-width: 500px;
+    animation: fadeIn 1.5s ease forwards;
+}
+
+h1 {
+    font-size: 26px;
+    margin-bottom: 10px;
+    font-weight: normal;
 }
 
 input {
     padding: 10px 20px;
     border-radius: 30px;
     border: none;
+    outline: none;
     text-align: center;
+    margin-top: 10px;
     font-size: 16px;
+    background: #fff;
 }
 
 button {
-    margin-top: 10px;
+    margin-top: 15px;
     padding: 10px 25px;
     border-radius: 30px;
     border: none;
-    background: white;
-    color: #e75480;
-    font-weight: bold;
+    background: #ff8fb1;
+    color: white;
     cursor: pointer;
     transition: 0.3s;
 }
 
 button:hover {
-    background: #ffe6eb;
+    background: #ff6f9d;
 }
 
-/* Love Letter */
+/* Hidden Content */
 #loveContent {
     display: none;
-    max-width: 600px;
-    padding: 40px;
-    background: rgba(255,255,255,0.2);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    text-align: center;
     animation: fadeIn 2s ease forwards;
 }
 
-h1 {
+@keyframes fadeIn {
+    from {opacity:0; transform: translateY(20px);}
+    to {opacity:1; transform: translateY(0);}
+}
+
+/* Pulsating Heart */
+.heart {
+    font-size: 60px;
+    animation: pulse 1.5s infinite;
     margin-bottom: 20px;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
 }
 
-/* Floating hearts & flowers */
+/* Floating elements */
 .floating {
     position: absolute;
-    font-size: 24px;
+    font-size: 22px;
     animation: floatUp linear infinite;
+    opacity: 0.8;
 }
 
 @keyframes floatUp {
@@ -90,29 +109,33 @@ h1 {
 
 <body>
 
-<div id="loginBox">
-    <h2>Enter Our Special Date 💕</h2>
-    <input type="password" id="password" placeholder="DDMMYYYY">
+<div class="card">
+
+<div id="login">
+    <h1>hi ♡</h1>
+    <p>enter the key</p>
+    <input type="password" id="password" placeholder="••••••••">
     <br>
-    <button onclick="unlock()">Unlock</button>
+    <button onclick="unlock()">open</button>
 </div>
 
 <div id="loveContent">
-    <h1>Happy 1 Month ❤️</h1>
+    <div class="heart">❤️</div>
+    <h1>happy one month</h1>
     <p>
-        My love,<br><br>
-        One month with you has been the most beautiful chapter of my life.  
-        Every day with you feels lighter, warmer, and happier.  
-        Your smile is my favorite notification.  
-        Your voice is my favorite sound.  
-        And your love is my favorite place to be.<br><br>
-        I don’t just love you…  
-        I love the way you make me feel.  
-        I love the way you exist.  
-        I love us.<br><br>
-        Here’s to one month…  
-        and to every month after this. ❤️
+        my love,<br><br>
+        this month with you has been soft, warm, and unforgettable.  
+        you have turned ordinary days into something magical.  
+        every laugh, every look, every little moment with you  
+        feels like home.<br><br>
+        i love the way you smile.  
+        i love the way you care.  
+        i love the way you are.<br><br>
+        one month down…  
+        forever to go. ♡
     </p>
+</div>
+
 </div>
 
 <script>
@@ -121,28 +144,26 @@ const correctPassword = "26012026";
 function unlock() {
     const input = document.getElementById("password").value;
     if (input === correctPassword) {
-        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("login").style.display = "none";
         document.getElementById("loveContent").style.display = "block";
         startFloating();
-    } else {
-        alert("Hint: Our date 💕");
     }
 }
 
 function startFloating() {
-    const symbols = ["❤️", "🌸", "💖", "🌷", "💕"];
+    const symbols = ["❤️","🌸","💗","🌷","💖"];
     setInterval(() => {
-        const element = document.createElement("div");
-        element.className = "floating";
-        element.innerText = symbols[Math.floor(Math.random() * symbols.length)];
-        element.style.left = Math.random() * 100 + "vw";
-        element.style.animationDuration = (4 + Math.random() * 4) + "s";
-        document.body.appendChild(element);
+        const el = document.createElement("div");
+        el.className = "floating";
+        el.innerText = symbols[Math.floor(Math.random()*symbols.length)];
+        el.style.left = Math.random() * 100 + "vw";
+        el.style.animationDuration = (5 + Math.random()*3) + "s";
+        document.body.appendChild(el);
 
         setTimeout(() => {
-            element.remove();
+            el.remove();
         }, 8000);
-    }, 500);
+    }, 600);
 }
 </script>
 
