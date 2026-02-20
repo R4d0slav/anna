@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #fff;
+}
+
+/* Login Screen */
+#loginBox {
+    text-align: center;
+}
+
+input {
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: none;
+    text-align: center;
+    font-size: 16px;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 25px;
+    border-radius: 30px;
+    border: none;
+    background: white;
+    color: #e75480;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #ffe6eb;
+}
+
+/* Love Letter */
+#loveContent {
+    display: none;
+    max-width: 600px;
+    padding: 40px;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    text-align: center;
+    animation: fadeIn 2s ease forwards;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Floating hearts & flowers */
+.floating {
+    position: absolute;
+    font-size: 24px;
+    animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(100vh);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-10vh);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="loginBox">
+    <h2>Enter Our Special Date 💕</h2>
+    <input type="password" id="password" placeholder="DDMMYYYY">
+    <br>
+    <button onclick="unlock()">Unlock</button>
+</div>
+
+<div id="loveContent">
+    <h1>Happy 1 Month ❤️</h1>
+    <p>
+        My love,<br><br>
+        One month with you has been the most beautiful chapter of my life.  
+        Every day with you feels lighter, warmer, and happier.  
+        Your smile is my favorite notification.  
+        Your voice is my favorite sound.  
+        And your love is my favorite place to be.<br><br>
+        I don’t just love you…  
+        I love the way you make me feel.  
+        I love the way you exist.  
+        I love us.<br><br>
+        Here’s to one month…  
+        and to every month after this. ❤️
+    </p>
+</div>
+
+<script>
+const correctPassword = "26012026";
+
+function unlock() {
+    const input = document.getElementById("password").value;
+    if (input === correctPassword) {
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("loveContent").style.display = "block";
+        startFloating();
+    } else {
+        alert("Hint: Our date 💕");
+    }
+}
+
+function startFloating() {
+    const symbols = ["❤️", "🌸", "💖", "🌷", "💕"];
+    setInterval(() => {
+        const element = document.createElement("div");
+        element.className = "floating";
+        element.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+        element.style.left = Math.random() * 100 + "vw";
+        element.style.animationDuration = (4 + Math.random() * 4) + "s";
+        document.body.appendChild(element);
+
+        setTimeout(() => {
+            element.remove();
+        }, 8000);
+    }, 500);
+}
+</script>
+
+</body>
+</html>
