@@ -1,87 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our 1 Month Anniversary ❤️</title>
-    <link rel="stylesheet" href="css/main.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>♡</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background: linear-gradient(135deg, #ffd6e8, #ffeef5);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #5c3a4d;
+}
+
+/* Card */
+.card {
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(15px);
+    padding: 40px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    max-width: 500px;
+    animation: fadeIn 1.5s ease forwards;
+}
+
+h1 {
+    font-size: 26px;
+    margin-bottom: 10px;
+    font-weight: normal;
+}
+
+input {
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 16px;
+    background: #fff;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px 25px;
+    border-radius: 30px;
+    border: none;
+    background: #ff8fb1;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #ff6f9d;
+}
+
+/* Hidden Content */
+#loveContent {
+    display: none;
+    animation: fadeIn 2s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {opacity:0; transform: translateY(20px);}
+    to {opacity:1; transform: translateY(0);}
+}
+
+/* Pulsating Heart */
+.heart {
+    font-size: 60px;
+    animation: pulse 1.5s infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* Floating elements */
+.floating {
+    position: absolute;
+    font-size: 22px;
+    animation: floatUp linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(100vh);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-10vh);
+        opacity: 0;
+    }
+}
+</style>
 </head>
+
 <body>
-    <div class="hero-section">
-        <h1 class="main-title">Happy 1 Month Anniversary! ❤️</h1>
-        <p class="subtitle">My Dearest [Girlfriend's Name]</p>
-        <div class="heart-animation">💕</div>
-    </div>
 
-    <nav class="main-nav">
-        <div class="nav-container">
-            <a href="index.html" class="nav-link active">Home</a>
-            <a href="pages/memories.html" class="nav-link">Memories</a>
-            <a href="pages/love-notes.html" class="nav-link">Love Notes</a>
-            <div class="games-dropdown">
-                <button class="dropbtn">Mini Games 🎮</button>
-                <div class="dropdown-content">
-                    <a href="pages/games/memory-game.html">Memory Match</a>
-                    <a href="pages/games/quiz-game.html">Love Quiz</a>
-                    <a href="pages/games/love-meter.html">Love Meter</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+<div class="card">
 
-    <main class="content">
-        <section class="welcome-card">
-            <h2>Welcome to Our Special Place 💑</h2>
-            <p>One month ago, our journey together began. Here's a little corner of the internet dedicated to us!</p>
-            
-            <div class="stats-container">
-                <div class="stat-box">
-                    <span class="stat-number" id="daysCount">30</span>
-                    <span class="stat-label">Days Together</span>
-                </div>
-                <div class="stat-box">
-                    <span class="stat-number" id="memoriesCount">5</span>
-                    <span class="stat-label">Memories</span>
-                </div>
-                <div class="stat-box">
-                    <span class="stat-number" id="loveQuotient">∞</span>
-                    <span class="stat-label">Love Level</span>
-                </div>
-            </div>
-        </section>
+<div id="login">
+    <h1>hi ♡</h1>
+    <p>enter the key</p>
+    <input type="password" id="password" placeholder="••••••••">
+    <br>
+    <button onclick="unlock()">open</button>
+</div>
 
-        <section class="quick-links">
-            <h3>Explore Our World 🌎</h3>
-            <div class="link-grid">
-                <a href="pages/memories.html" class="grid-item memories">
-                    <span>📸</span>
-                    <h4>Our Memories</h4>
-                    <p>Relive our favorite moments</p>
-                </a>
-                <a href="pages/love-notes.html" class="grid-item notes">
-                    <span>💌</span>
-                    <h4>Love Notes</h4>
-                    <p>Sweet messages for you</p>
-                </a>
-                <a href="pages/games/memory-game.html" class="grid-item game">
-                    <span>🎮</span>
-                    <h4>Memory Game</h4>
-                    <p>Match our special moments</p>
-                </a>
-                <a href="pages/games/quiz-game.html" class="grid-item quiz">
-                    <span>❓</span>
-                    <h4>Love Quiz</h4>
-                    <p>How well do you know us?</p>
-                </a>
-            </div>
-        </section>
-    </main>
+<div id="loveContent">
+    <div class="heart">❤️</div>
+    <h1>happy one month</h1>
+    <p>
+        my love,<br><br>
+        this month with you has been soft, warm, and unforgettable.  
+        you have turned ordinary days into something magical.  
+        every laugh, every look, every little moment with you  
+        feels like home.<br><br>
+        i love the way you smile.  
+        i love the way you care.  
+        i love the way you are.<br><br>
+        one month down…  
+        forever to go. ♡
+    </p>
+</div>
 
-    <footer>
-        <p>Made with 💖 for my amazing girlfriend | 1 Month Anniversary</p>
-        <div class="floating-hearts"></div>
-    </footer>
+</div>
 
-    <script src="js/main.js"></script>
+<script>
+const correctPassword = "26012026";
+
+function unlock() {
+    const input = document.getElementById("password").value;
+    if (input === correctPassword) {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("loveContent").style.display = "block";
+        startFloating();
+    }
+}
+
+function startFloating() {
+    const symbols = ["❤️","🌸","💗","🌷","💖"];
+    setInterval(() => {
+        const el = document.createElement("div");
+        el.className = "floating";
+        el.innerText = symbols[Math.floor(Math.random()*symbols.length)];
+        el.style.left = Math.random() * 100 + "vw";
+        el.style.animationDuration = (5 + Math.random()*3) + "s";
+        document.body.appendChild(el);
+
+        setTimeout(() => {
+            el.remove();
+        }, 8000);
+    }, 600);
+}
+</script>
+
 </body>
 </html>
