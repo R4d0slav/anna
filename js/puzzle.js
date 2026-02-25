@@ -1889,31 +1889,11 @@ loadInitialFile();
 requestAnimationFrame(animate);
 
 
-// Function to launch the puzzle engine with your image
-function launchPuzzle(imgElement) {
-    const img = new Image();
-    img.src = imgElement.src;
-    
-    img.onload = function() {
-        // Your puzzle.js engine is a State Machine. 
-        // We need to tell it an image is ready.
-        events.push({
-            event: "srcImageLoaded",
-            image: img
-        });
 
-        // Force the menu to open so you can click 'Start'
-        if (ui) ui.open();
-        
-        // Jump to the puzzle area
-        document.getElementById('forPuzzle').scrollIntoView();
-    };
+
+function loadInitialFile() {
+    let defaultImage = "...";
+    puzzle.imageLoaded = false;
+    loadRemoteFile(defaultImage);
+    setTimeout(() => events.push({ event: "timeout" }), 5000);
 }
-
-// Attach this to your gallery images
-document.querySelectorAll('.photo-frame img').forEach(img => {
-    img.addEventListener('click', function() {
-        launchPuzzle(this);
-    });
-});
-

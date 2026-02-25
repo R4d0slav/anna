@@ -1,63 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Anna ❤️</title>
-
-<link rel="stylesheet" href="../css/home.css">
-<link rel="stylesheet" href="../css/atmosphere.css">
-<link rel="stylesheet" href="../css/bear.css">
-<link rel="stylesheet" href="../css/ui-elements.css">
-
-<style>
-/* ================= MODAL ================= */
-
-#jigsawModal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.7);
-    z-index: 9999;
-}
-
-#jigsawContent {
-    position: absolute;
-    inset: 2%;
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-#forPuzzle {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    background: #f4f4f4;
-}
-
-#closePuzzle {
-    position: absolute;
-    top: 10px;
-    right: 18px;
-    font-size: 28px;
-    cursor: pointer;
-    z-index: 10;
-}
-
-/* Hide engine UI completely */
-#menu,
-#controls {
-    display: none !important;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Anna ❤️</title>
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/atmosphere.css">
+    <link rel="stylesheet" href="../css/bear.css">
+    <link rel="stylesheet" href="../css/ui-elements.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
-<!-- ========== GALLERY ========== -->
-
-<div class="heart-atmosphere">
+    <div class="heart-atmosphere">
         <div class="pulse-heart p1">💖</div>
         <div class="pulse-heart p2">💝</div>
         <div class="pulse-heart p3">💓</div>
@@ -169,178 +124,215 @@
 </div>
 
 
-<!-- ========== REQUIRED BY puzzle.js (hidden but MUST exist) ========== -->
-
-<div id="menu">
-    <input id="nbpieces" type="number" value="24">
-    <button id="start"></button>
-    <button id="stop"></button>
-    <select id="shape"><option>1</option></select>
-    <select id="drawmode"><option value="1">1</option></select>
-    <input id="enablerot" type="checkbox">
-    <div id="load"></div>
-    <div id="default"></div>
-    <button id="help"></button>
-    <button id="helpstorage"></button>
-</div>
-
-<div id="controls"></div>
-
-
-<!-- ========== PUZZLE MODAL ========== -->
-
-<div id="jigsawModal">
-    <div id="jigsawContent">
-        <div id="closePuzzle">✕</div>
-        <div id="forPuzzle"></div>
+<!-- Puzzle Modal -->
+<div id="puzzleModal" class="modal">
+    <div class="modal-content puzzle-content">
+        <span class="close-puzzle">&times;</span>
+        <h2 class="handwritten">Solve Our Memory 🧩💕</h2>
+        <div id="puzzle-board"></div>
     </div>
 </div>
 
-
-
-<!-- ========== LOAD ENGINE ========== -->
-
-<script src="../js/puzzle.js"></script>
-
 <script>
-const modal = document.getElementById("jigsawModal");
-const closeBtn = document.getElementById("closePuzzle");
+const modal = document.getElementById("letterModal");
+const letter = document.querySelector(".letter-item");
+const closeBtn = document.querySelector(".close-btn");
 
-closeBtn.onclick = () => modal.style.display = "none";
+// Open: Add the 'show-in' class
+letter.onclick = function() {
+    modal.style.display = "block";
+    modal.classList.remove("show-out");
+    modal.classList.add("show-in");
+}
 
-window.onclick = (e) => {
-    if (e.target === modal) modal.style.display = "none";
-};
+// Close: Add the 'show-out' class, then wait for animation to finish
+function closeModal() {
+    modal.classList.remove("show-in");
+    modal.classList.add("show-out");
+    
+    // Wait for the 0.4s animation to finish before hiding the div
+    setTimeout(() => {
+        modal.style.display = "none";
+    }, 400); 
+}
 
+closeBtn.onclick = closeModal;
 
-// =========================
-// IMAGE CLICK → START PUZZLE
-// =========================
-
-document.querySelectorAll(".photo-frame img").forEach(img => {
-
-    img.style.cursor = "pointer";
-
-    img.addEventListener("click", () => {
-
-        if (typeof puzzle === "undefined") {
-            console.error("Puzzle not loaded.");
-            return;
-        }
-
-        // 1️⃣ Show modal FIRST
-        modal.style.display = "block";
-
-        // 2️⃣ Force browser to calculate layout
-        document.getElementById("forPuzzle").offsetHeight;
-
-        // 3️⃣ Reset state
-        puzzle.imageLoaded = false;
-
-        // 4️⃣ Wait for image to load before triggering state machine
-        const startPuzzleAfterLoad = function () {
-
-            const pieces = Number(document.getElementById("nbpieces").value) || 24;
-
-            events.push({
-                event: "nbpieces",
-                nbpieces: pieces
-            });
-
-            puzzle.srcImage.removeEventListener("load", startPuzzleAfterLoad);
-        };
-
-        puzzle.srcImage.addEventListener("load", startPuzzleAfterLoad);
-
-        // 5️⃣ Load clicked image
-        if (typeof loadRemoteFile === "function") {
-            loadRemoteFile(img.src);
-        } else {
-            puzzle.srcImage.src = img.src;
-        }
-    });
-});
-</script>
-
-<!-- ========== LETTER MODAL (with its own scope) ========== -->
-<script>
-(function() {
-    const modal = document.getElementById("letterModal");
-    const letter = document.querySelector(".letter-item");
-    const closeBtn = document.querySelector(".close-btn");
-
-    letter.onclick = function() {
-        modal.style.display = "block";
-        modal.classList.remove("show-out");
-        modal.classList.add("show-in");
+window.onclick = function(event) {
+    if (event.target == modal) {
+        closeModal();
     }
+}
 
-    function closeModal() {
-        modal.classList.remove("show-in");
-        modal.classList.add("show-out");
-        setTimeout(() => {
-            modal.style.display = "none";
-        }, 400);
-    }
 
-    closeBtn.onclick = closeModal;
 
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            closeModal();
-        }
-    }
-})();
-</script>
-
-<!-- ========== FLOWER PETALS (no conflict) ========== -->
-<script>
 document.addEventListener('DOMContentLoaded', () => {
     const flower = document.querySelector('.flower-item');
+
     flower.addEventListener('click', (e) => {
+        // Number of petals to create
         const petalCount = 18;
         const petalEmojis = ['🌸', '💮', '🌺', '✨'];
+
         for (let i = 0; i < petalCount; i++) {
             const petal = document.createElement('div');
             petal.className = 'petal';
+            
+            // Pick a random petal type
             petal.innerHTML = petalEmojis[Math.floor(Math.random() * petalEmojis.length)];
+            
+            // Start at the click position
             const startX = e.clientX;
             const startY = e.clientY;
+            
             petal.style.left = startX + 'px';
             petal.style.top = startY + 'px';
             petal.style.fontSize = (Math.random() * 15 + 15) + 'px';
+            
             document.body.appendChild(petal);
-            const destinationX = (Math.random() - 0.5) * 400;
-            const destinationY = Math.random() * 400 + 200;
-            const rotation = Math.random() * 720 - 360;
+
+            // Randomize direction and distance
+            const destinationX = (Math.random() - 0.5) * 400; // Spread left/right
+            const destinationY = Math.random() * 400 + 200;  // Fall down
+            const rotation = Math.random() * 720 - 360;      // Spin
+
+            // The actual animation
             const animation = petal.animate([
-                { transform: 'translate(0,0) rotate(0deg)', opacity: 1 },
-                { transform: `translate(${destinationX}px,${destinationY}px) rotate(${rotation}deg)`, opacity: 0 }
+                { 
+                    transform: 'translate(0, 0) rotate(0deg)', 
+                    opacity: 1 
+                },
+                { 
+                    transform: `translate(${destinationX}px, ${destinationY}px) rotate(${rotation}deg)`, 
+                    opacity: 0 
+                }
             ], {
                 duration: 2000 + Math.random() * 1000,
-                easing: 'cubic-bezier(0.25,0.46,0.45,0.94)',
+                easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                 fill: 'forwards'
             });
+
+            // Clean up the petal after it fades out
             animation.onfinish = () => petal.remove();
         }
     });
 });
-</script>
 
-<!-- ========== MUSIC TOGGLE ========== -->
-<script>
+
 function toggleMusic() {
     const audio = document.getElementById('bg-music');
     const btn = document.querySelector('.music-control');
     const icon = document.getElementById('music-icon');
+
     if (audio.paused) {
         audio.play();
         btn.classList.add('playing');
-        icon.innerHTML = '🎶';
+        icon.innerHTML = '🎶'; // "Active" icon
     } else {
         audio.pause();
         btn.classList.remove('playing');
-        icon.innerHTML = '🎵';
+        icon.innerHTML = '🎵'; // "Paused" icon
+    }
+}
+
+
+
+
+
+
+// =======================
+// PUZZLE GAME
+// =======================
+
+const puzzleModal = document.getElementById("puzzleModal");
+const puzzleBoard = document.getElementById("puzzle-board");
+const closePuzzle = document.querySelector(".close-puzzle");
+
+let tiles = [];
+let emptyIndex = 8;
+let currentImage = "";
+
+// Make photos clickable
+document.querySelectorAll(".photo-frame img").forEach(img => {
+    img.addEventListener("click", () => {
+        currentImage = img.src;
+        startPuzzle();
+    });
+});
+
+function startPuzzle() {
+    puzzleModal.style.display = "block";
+    createTiles();
+    shuffleTiles();
+    renderPuzzle();
+}
+
+closePuzzle.onclick = () => puzzleModal.style.display = "none";
+window.addEventListener("click", e => {
+    if (e.target === puzzleModal) puzzleModal.style.display = "none";
+});
+
+function createTiles() {
+    tiles = [];
+    puzzleBoard.innerHTML = "";
+
+    for (let i = 0; i < 9; i++) {
+        tiles.push(i);
+    }
+
+    emptyIndex = 8;
+}
+
+function shuffleTiles() {
+    for (let i = tiles.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * i);
+        [tiles[i], tiles[j]] = [tiles[j], tiles[i]];
+    }
+}
+
+function renderPuzzle() {
+    puzzleBoard.innerHTML = "";
+
+    tiles.forEach((tile, index) => {
+        const div = document.createElement("div");
+        div.classList.add("puzzle-tile");
+
+        if (tile === 8) {
+            div.classList.add("empty");
+            emptyIndex = index;
+        } else {
+            const x = (tile % 3) * -100;
+            const y = Math.floor(tile / 3) * -100;
+
+            div.style.backgroundImage = `url(${currentImage})`;
+            div.style.backgroundPosition = `${x}px ${y}px`;
+        }
+
+        div.addEventListener("click", () => moveTile(index));
+        puzzleBoard.appendChild(div);
+    });
+}
+
+function moveTile(index) {
+    const validMoves = [
+        emptyIndex - 1,
+        emptyIndex + 1,
+        emptyIndex - 3,
+        emptyIndex + 3
+    ];
+
+    if (validMoves.includes(index)) {
+        [tiles[index], tiles[emptyIndex]] = [tiles[emptyIndex], tiles[index]];
+        renderPuzzle();
+        checkWin();
+    }
+}
+
+function checkWin() {
+    if (tiles.every((tile, index) => tile === index)) {
+        setTimeout(() => {
+            alert("You solved it! 💖");
+        }, 200);
     }
 }
 </script>
