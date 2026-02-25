@@ -1,0 +1,26 @@
+/* Orchid Bouquet - Positioned in left paw */
+.orchid-bouquet {
+    position: absolute;
+    /* Position in the left paw */
+    left: 76%;      /* Aligns with left paw */
+    bottom: 70%;   /* Matches paw height */
+    width: 170px;    /* Slightly smaller to fit in paw */
+    height: auto;
+    z-index: 9999;
+    pointer-events: none;
+    /* Natural tilt for holding */
+    transform: rotate(30deg) scaleX(-1); /* Flip to face outward */
+    /* Gentle floating animation */
+    animation: orchid-float 3s ease-in-out infinite;
+}
+
+.orchid-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* Soft shadow to blend with bear */
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.15));
+}
+
+
+/* If the bouquet looks better facing the other way, remove scaleX(-1) */

@@ -1,0 +1,138 @@
+/* --- 4. Main Bear Container --- */
+.bear-container {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateY(50px); /* Adjust vertical centering */
+}
+
+.bear-wrapper {
+    position: relative;
+    z-index: 15;
+    animation: unifiedFloat 5s ease-in-out infinite;
+}
+
+.bear-image {
+    width: 100%;
+    max-width: 400px;
+    display: block;
+    filter: drop-shadow(0 15px 20px rgba(255, 105, 180, 0.3));
+}
+
+/* --- 5. Heart Cloud Piles --- */
+.heart-cloud-pile {
+    position: absolute;
+    bottom: 0;
+    width: 450px;
+    height: 150px;
+}
+
+.back-pile { z-index: 5; bottom: 0%; }
+.front-pile { z-index: 20; bottom: -10%; }
+
+.heart {
+    position: absolute;
+    width: 120px;
+    filter: drop-shadow(0 5px 10px rgba(255, 105, 180, 0.2));
+    animation: unifiedFloat 5s ease-in-out infinite;
+}
+
+/* Heart Spread */
+.heart-1  { left: 5%;   bottom: -10px; transform: rotate(-15deg); }
+.heart-2  { left: 20%;  bottom: 25px; transform: rotate(5deg); }
+.heart-3  { left: 38%;  bottom: 5px;  transform: rotate(-10deg); }
+.heart-4  { left: 55%;  bottom: 20px; transform: rotate(15deg); }
+.heart-5  { left: 75%;  bottom: 8px;  transform: rotate(-20deg); }
+.heart-6  { left: 10%;  bottom: 25px; transform: rotate(25deg); }
+.heart-7  { left: 30%;  bottom: 35px; transform: rotate(-30deg); }
+.heart-8  { left: 48%;  bottom: 15px; transform: rotate(20deg); }
+.heart-9  { left: 65%;  bottom: 30px; transform: rotate(-5deg); }
+.heart-10 { left: 60%;  bottom: -45px; transform: rotate(30deg); }
+.heart-11 { left: 42%;  bottom: 50px; transform: rotate(-25deg); }
+.heart-12 { left: -3%;  bottom: -0px; transform: rotate(10deg); }
+.heart-13  { left: 65%;  bottom: 30px; transform: rotate(-5deg); }
+.heart-14 { left: 72%;  bottom: 45px; transform: rotate(30deg); }
+.heart-15 { left: 80%;  bottom: 10px; transform: rotate(-25deg); }
+.heart-16 { left: 2%;  bottom: 20px; transform: rotate(10deg); }
+
+.heart-17  { left: 25%;  bottom: -20px; transform: rotate(-5deg); }
+.heart-18 { left: 42%;  bottom: -40px; transform: rotate(30deg); }
+.heart-19 { left: 60%;  bottom: -30px; transform: rotate(-25deg); }
+
+/* Props */
+/* --- Props (Flower & Letter) --- */
+
+/* 1. Base Styles & Shared Transitions */
+.flower-item, .letter-item { 
+    position: absolute; 
+    /* Slow 1.2s transition for that dreamy, smooth rotation/glow */
+    transition: all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+
+.letter-item { 
+    width: 22%; 
+    right: 67%; 
+    bottom: 25%; 
+    z-index: 70; 
+    cursor: pointer;
+    /* Clean start shadow */
+    filter: drop-shadow(0 5px 5px rgba(0,0,0,0.05));
+}
+
+.letter-item:hover { 
+    /* Subtle tilt + Intense Magical Glow */
+    transform: rotate(-5deg) scale(1.08) translateY(-8px); 
+    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.9))
+            drop-shadow(0 0 20px rgba(255, 105, 180, 0.8)) 
+            drop-shadow(0 0 40px rgba(255, 182, 193, 0.4));
+}
+
+/* --- Flower Item Styles --- */
+.flower-item {
+    position: absolute;
+    width: 35%;
+    left: 62%;
+    bottom: 28%;
+    transform: rotate(20deg);
+    z-index: 30;
+    cursor: pointer;
+
+    
+    /* Smooth transition for the glow */
+    transition: transform 1.2s cubic-bezier(0.1, 0.5, 0.2, 1), 
+                filter 1.2s ease-in-out;
+    
+    /* The idle pulse */
+    animation: flowerGlowPulse 4s infinite ease-in-out;
+}
+
+.flower-item:hover {
+    /* 1. Freeze the pulse so the hover glow can take over */
+    animation-play-state: paused;
+
+    /* 2. Subtle lift */
+    transform: rotate(25deg) scale(1.1) translateY(-5px) !important;
+    
+    /* 3. THE GLOW: Added !important to force it over the animation */
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.9)) 
+            drop-shadow(0 0 20px rgba(255, 182, 193, 0.8)) 
+            drop-shadow(0 0 35px rgba(255, 105, 180, 0.5)) !important;
+            
+}
+
+/* Subtle breathing animation for the flower */
+@keyframes flowerGlowPulse {
+    0%, 100% { filter: drop-shadow(0 0 5px rgba(255, 192, 203, 0.2)); }
+    50% { filter: drop-shadow(0 0 12px rgba(255, 182, 193, 0.4)); }
+}
+
+.petal {
+    position: fixed;
+    pointer-events: none; /* Mouse goes through them */
+    z-index: 99999;
+    user-select: none;
+    will-change: transform, opacity; /* Smoother animation */
+}

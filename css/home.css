@@ -1,0 +1,67 @@
+/* --- 1. Global Reset & Body --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(145deg, #ffefef 0%, #ffe4f3 50%, #f9e6ff 100%);
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    position: relative;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* --- 8. Responsive Fixes --- */
+@media (max-width: 768px) {
+    .photo-frame img { width: 80px; height: 80px; }
+    .p1 { top: 5%; left: 5%; }
+    .p2 { top: 5%; right: 5%; }
+    .p3, .p4 { display: none; } /* Hide middle photos to clear bear space */
+    .p5 { bottom: 5%; left: 5%; }
+    .bear-image { max-width: 300px; }
+    .heart-cloud-pile { width: 350px; }
+}
+
+
+
+
+
+
+
+
+
+.puzzle-content {
+    text-align: center;
+    max-width: 500px;
+}
+
+#puzzle-board {
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 2px;
+}
+
+.puzzle-tile {
+    background-size: 300px 300px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.puzzle-tile:hover {
+    transform: scale(1.05);
+}
+
+.empty {
+    background: #fff;
+    cursor: default;
+}

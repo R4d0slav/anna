@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bear on Heart Pillows</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/bear.css">
+    <link rel="stylesheet" href="../css/hearts.css">
+    <link rel="stylesheet" href="../css/letter.css">
+    <link rel="stylesheet" href="../css/flowers.css">
+</head>
+<body>
+<div class="content">
+    <div class="bear-hearts-wrapper">
+        <!-- Bear placeholder -->
+        <div id="bear-placeholder" class="bear-placeholder">
+            
+            <div class="bear-wrapper">
+            <div class="heart-clouds-wrapper">
+
+                <!-- Behind the bear -->
+                <div class="heart-row behind">
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                </div>
+                <div class="heart-row behind">
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                </div>
+                <div class="heart-row behind">
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                </div>
+
+               
+            </div>
+                <div class="scene">
+                    <div class="teddy-container">
+                        <article role="img" aria-label="Cute teddy bear">
+                            <section class="body"></section>                               
+                            <div class="paw"></div>
+                            <div class="paw"></div>
+                            <div class="orchid-bouquet" id="orchids">
+                <img src="../assets/images/image.png" alt="Orchid Bouquet" class="orchid-img">
+            </div>
+                            <section class="head">
+                                <div class="ear"></div>
+                                <div class="ear"></div>
+                                <div class="face">
+                                    <div class="eye"></div>
+                                    <div class="eye"></div>
+                                    <div class="nose"></div>
+                                </div>
+                            </section>
+                            <div class="foot"></div>
+                            <div class="foot"></div>
+                        </article>
+                    </div>
+                </div>
+                <div class="letter" id="letter">
+                    <div class="letter-front" id="letter-trigger">💌</div>
+                    <div class="letter-message">
+                        <h2>To my love Anna ❤️</h2>
+                        <p>Happy 1 month anniversary, my beautiful girl. 🥰</p>
+                        <p>This past month with you has been the happiest chapter of my life. Every smile, every laugh, every moment we share means more to me than I can put into words.</p>
+                        <p>You make my days brighter, my heart softer, and my world so much more magical. ✨ I love the way you laugh, the way you look at me, and the way you make even the simplest moments feel special.</p>
+                        <p>One month down, and I already can’t imagine my life without you. I’m so excited for all the memories we’re going to create together.</p>
+                        <p>I love you more than all the stars in the sky and all the heartbeats in my chest. ❤️</p>
+                        
+                        <br>
+                        <p><strong>Szeretlek teljes szívemből.</strong></p>
+                        <p><strong>Mindig a tiéd,</strong></p>
+                        <p><strong>Rade</strong></p>
+                    </div>
+                </div>
+            </div>
+            <div class="heart-clouds-wrapper">
+                <!-- Bottom rows (bear sits on these) -->
+                <div class="heart-row under">
+                    <span class="heart">💖</span>
+                    <span class="heart">💖</span>
+                    <span class="heart">💞</span>
+                    <span class="heart">💞</span>
+                    <span class="heart">💞</span>
+                    <span class="heart">💖</span>
+                    <span class="heart">💖</span>
+                    <span class="heart">💖</span>
+                </div>
+                <div class="heart-row under">
+                    <span class="heart">💖</span>
+                    <span class="heart">💖</span>
+                    <span class="heart">💞</span>
+                    <span class="heart">💞</span>
+                    <span class="heart">💞</span>
+                    <span class="heart">💖</span>
+                    <span class="heart">💖</span>
+                    <span class="heart">💖</span>
+                </div>
+
+
+                <!-- In front of the bear -->
+                <div class="heart-row front">
+                    <span class="heart">💖</span>
+                    <span class="heart">💖</span>
+                    <span class="heart">💞</span>
+                    <span class="heart">💞</span>
+                    <span class="heart">💞</span>
+                    <span class="heart">💖</span>
+                    <span class="heart">💖</span>
+                    <span class="heart">💖</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const letter = document.getElementById('letter');
+    if (letter) {
+        letter.onclick = function(e) {
+            e.stopPropagation();
+            this.classList.toggle('open');
+        };
+    }
+</script>
+
+</body>
+</html>

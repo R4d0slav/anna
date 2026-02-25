@@ -1,0 +1,96 @@
+/* ==================== HEART CLOUDS ==================== */
+.heart-clouds {
+    position: absolute;
+    /* left: 28%; */
+    width: 30rem;
+    height: 5rem;    
+    pointer-events: none;  /* clicks pass through to bear/letter */
+    transform: translateX(-60%) translateY(50%) scale(0.8);
+}
+
+.heart-cloud {
+    position: absolute;
+    font-size: 14vmin;
+    line-height: 1;
+    color: white;
+    text-shadow: 
+        0 0 20px rgba(255, 255, 255, 0.9),
+        2px 4px 10px rgba(255, 180, 200, 0.5);
+    filter: drop-shadow(0 8px 12px rgba(255, 120, 160, 0.3));
+    transform-origin: center;
+}
+
+/* ---------------- Responsive scaling ---------------- */
+@media screen and (max-width: 800px) {
+    .heart-clouds {
+        transform: translateX(-57%) translateY(-45%) scale(0.7);  /* scale down 70% */
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .heart-clouds {
+        transform: translateX(-54%) translateY(-110%) scale(0.5);  /* scale down 50% */
+    }
+}
+
+/* Under the bear (bear sits on these) */
+.heart-cloud.under {
+    bottom: 5%;
+    z-index: 2;            /* below bear (bear parts are 3,5,10) */
+    opacity: 0.9;
+}
+
+/* Behind the bear */
+.heart-cloud.behind {
+    bottom: 20%;
+    z-index: 1;            /* behind everything */
+    opacity: 0.4;
+    filter: blur(3px) brightness(0.8);
+    font-size: 12vmin;
+}
+
+/* Behind the bear */
+.heart-cloud.behind2 {
+    bottom: 25%;
+    opacity: 0.8;
+    filter: drop-shadow(0 0 25px #ffb6c1);
+    font-size: 16vmin;
+}
+
+/* In front of the bear */
+.heart-cloud.front {
+    bottom: 10%;
+    z-index: 20;           /* above bear */
+    filter: drop-shadow(0 0 25px #ffb6c1);
+    font-size: 16vmin;
+}
+
+/* Random positions for a natural scattered look */
+.heart-cloud.under:nth-child(1) { left: 5%; transform: rotate(-5deg); animation-delay: 0s; z-index: -2;}
+.heart-cloud.under:nth-child(2) { left: 25%; transform: rotate(8deg); animation-delay: 0.3s; z-index: -2;}
+.heart-cloud.under:nth-child(3) { left: 45%; transform: rotate(-3deg); animation-delay: 0.6s; z-index: -2;}
+.heart-cloud.under:nth-child(4) { left: 65%; transform: rotate(10deg); animation-delay: 0.9s; z-index: -2;}
+.heart-cloud.under:nth-child(5) { left: 85%; transform: rotate(-8deg); animation-delay: 1.2s; z-index: -2;}
+
+.heart-cloud.behind:nth-child(6) { left: 2%; transform: rotate(15deg); animation-delay: 1.5s; z-index: -2;}
+.heart-cloud.behind:nth-child(7) { left: 22%; transform: rotate(-10deg); animation-delay: 1.8s; z-index: -2;}
+.heart-cloud.behind:nth-child(8) { left: 42%; transform: rotate(5deg); animation-delay: 2.1s; z-index: -2;}
+.heart-cloud.behind:nth-child(9) { left: 62%; transform: rotate(-12deg); animation-delay: 2.4s; z-index: -2;}
+.heart-cloud.behind:nth-child(10) { left: 82%; transform: rotate(8deg); animation-delay: 2.7s; z-index: -2;}
+
+.heart-cloud.behind2:nth-child(11) { left: 0%; transform: rotate(15deg); animation-delay: 1.5s; z-index: -2;}
+.heart-cloud.behind2:nth-child(12) { left: 20%; transform: rotate(-10deg); animation-delay: 1.8s; z-index: -2;}
+.heart-cloud.behind2:nth-child(13) { left: 40%; transform: rotate(5deg); animation-delay: 2.1s; z-index: -2;}
+.heart-cloud.behind2:nth-child(14) { left: 60%; transform: rotate(-12deg); animation-delay: 2.4s; z-index: -2;}
+.heart-cloud.behind2:nth-child(15) { left: 80%; transform: rotate(8deg); animation-delay: 2.7s; z-index: -2;}
+
+.heart-cloud.front:nth-child(16) { left: 10%; transform: rotate(-15deg); animation-delay: 3s;  }
+.heart-cloud.front:nth-child(17) { left: 30%; transform: rotate(20deg); animation-delay: 3.3s; }
+.heart-cloud.front:nth-child(18) { left: 50%; transform: rotate(-12deg); animation-delay: 3.6s; }
+.heart-cloud.front:nth-child(19) { left: 70%; transform: rotate(18deg); animation-delay: 3.9s; }
+.heart-cloud.front:nth-child(20) { left: 90%; transform: rotate(-8deg); animation-delay: 4.2s; }
+
+@keyframes cloudFloat {
+    0% { transform: translateY(0) rotate(var(--rot, 0deg)); }
+    100% { transform: translateY(-2vmin) rotate(var(--rot, 0deg)); }
+}

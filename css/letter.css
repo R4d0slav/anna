@@ -1,0 +1,67 @@
+.letter {
+    position: absolute;
+    /* Adjust these % to pin the letter right on top of the bear's paw */
+    bottom: 39%; 
+    left: -2%;
+    
+    width: 50px;
+    height: 35px;
+    z-index: 999999 !important; /* Absolute top priority */
+    transform: rotate(-15deg); /* Tilt only the envelope */
+    cursor: pointer;
+}
+
+.letter:hover {
+    transform: rotate(-15deg) scale(1.1);
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.7),
+                0 0 30px rgba(255, 105, 180, 0.4);
+}
+
+.letter-front {
+    width: 100%;
+    height: 100%;
+    background: white;
+    border: 2px solid #ff69b4;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* THE POPUP - Perfectly Straight */
+.letter-message {
+    position: fixed; /* Stays in the center of the screen */
+    top: 50%;
+    left: 20%;
+    /* No rotation! Perfectly horizontal. */
+    transform: translate(-50%, -50%) scale(0);
+    
+    width: 30rem;
+    background: white;
+    border: 3px solid #ff69b4;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    z-index: 1000000;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.letter.open .letter-message {
+    transform: translate(-75%, -115%) scale(1) rotate(15deg);
+}
+
+/* Medium screens */
+@media screen and (max-width: 1200px) {
+    .letter.open .letter-message {
+        transform: translate(-40%, -110%) scale(1) rotate(15deg);
+    }
+}
+
+/* Small screens */
+@media screen and (max-width: 700px) {
+    .letter.open .letter-message {
+        transform: translate(-20%, -105%) scale(1) rotate(15deg);
+    }
+}
