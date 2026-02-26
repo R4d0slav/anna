@@ -338,6 +338,8 @@
     align-items: center;
     justify-content: center;
     box-shadow: -2px 5px 10px rgba(255, 153, 170, 0.3);
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 /* The "Stitch" Line on the ribbon */
@@ -514,20 +516,6 @@
 .p4 { --rot: -12deg; bottom: 15%; left: 20%; }
 .p5 { --rot: 10deg;  bottom: 14%; right: 16%; }
 
-/* ========== MOBILE ========== */
-@media (max-width: 768px) {
-    .photo-frame img { 
-        width: 85px !important; 
-        height: 85px !important; 
-    }
-    /* Smaller lift for mobile */
-    .photo-frame:hover img {
-        transform: rotate(0deg) scale(1.1) translateY(-15px);
-    }
-    .photo-frame:hover .tape {
-        transform: translateX(-50%) rotate(0deg) translateY(-15px);
-    }
-}
 
 
 
@@ -560,13 +548,17 @@
 
 
 
+@media (max-width: 1200px) {
+    .photo-frame img { width: 140px; height: 140px; }
+    .p1 { top: 16%; left: 16%; }
+}
 
 
 
 
 /* --- Tablet (≤1024px) --- */
-@media (max-width: 1024px) {
-    .photo-frame img { width: 100px; height: 100px; }
+@media (max-width: 1020px) {
+    .photo-frame img { width: 120px; height: 120px; }
     .tape { width: 50px; height: 20px; }
 
     .p1 { top: 12%; left: 16%; }
@@ -577,9 +569,11 @@
     .p5 { bottom: 10%; right: 12%; }
 }
 
+
+
 /* --- Mobile (≤600px) --- */
 @media (max-width: 600px) {
-    .photo-frame img { width: 70px; height: 70px; }
+    .photo-frame img { width: 85px; height: 85px; }
     .tape { width: 35px; height: 15px; }
 
     /* Rearrange / scale positions to avoid clutter */
@@ -592,8 +586,15 @@
 
     /* Optional: scale animation subtle for small screens */
     .photo-frame { animation: photoSubtlePulse 5s infinite ease-in-out; }
-}
 
+    /* Smaller lift for mobile */
+    .photo-frame:hover img {
+        transform: rotate(0deg) scale(1.1) translateY(-15px);
+    }
+    .photo-frame:hover .tape {
+        transform: translateX(-50%) rotate(0deg) translateY(-15px);
+    }
+}
 
 
 

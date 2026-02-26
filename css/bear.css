@@ -170,6 +170,15 @@
 }
 
 
+@media (max-width: 380px) {
+
+    /* Anniversary top scaling */
+    .anniversary-top .text-cloud { font-size: 2rem; }
+
+    .bear-container { transform: translateY(100px) scale(0.5); }
+
+}
+
 
 
 
