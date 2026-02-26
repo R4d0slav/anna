@@ -175,3 +175,16 @@
 
 
 
+/* Remove sticky hover on touch devices */
+@media (hover: none) {
+    .flower-item:hover {
+        transform: rotate(20deg) scale(1) translateY(0);
+        filter: none !important;
+        animation-play-state: running;
+    }
+
+    .letter-item:hover {
+        transform: none;
+        filter: drop-shadow(0 5px 5px rgba(0,0,0,0.05));
+    }
+}
