@@ -1,159 +1,23 @@
-/* --- 3. Photo Gallery (Sticker Frames) --- */
-.photo-gallery {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 2000;
-}
-
-.photo-frame {
-    position: absolute;
-    background: white;
-    padding: 8px;
-    border-radius: 15px;
-    border: 3px solid #ffccd5;
-    box-shadow: 0 4px 15px rgba(255, 182, 193, 0.3);
-    pointer-events: auto;
-    
-    /* THE SECRET SAUCE: Transition everything smoothly */
-    /* Use a "Back" or "Cubic" curve for that organic feel */
-    transition: 
-        transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), 
-        box-shadow 0.8s ease,
-        border-color 0.8s ease;
-
-    animation: photoSubtlePulse 6s infinite ease-in-out; /* Slower pulse */
-}
-
-.photo-frame:hover {
-    /* Pause the animation gently where it is */
-    animation-play-state: paused; 
-    
-    /* VERY SUBTLE MOVE: 
-       - Scale: only 5% bigger (1.05)
-       - Rotate: straightened out
-       - Lift: only 8px up
-    */
-    transform: scale(1.05) rotate(0deg) translateY(-8px) !important;
-    
-    /* Soft glow instead of a hard shadow */
-    border-color: #ffb6c1 !important;
-    box-shadow: 0 10px 25px rgba(255, 182, 193, 0.4);
-    
-    z-index: 1000;
-    cursor: pointer;
-}
-
-@keyframes photoSubtlePulse {
-    0%, 100% { 
-        transform: rotate(var(--rot)) translateY(0); 
-    }
-    50% { 
-        /* Only move 3px and rotate 1 degree */
-        transform: rotate(calc(var(--rot) + 1deg)) translateY(-3px); 
-    }
-}
-
-.photo-frame img {
-    width: 130px; 
-    height: 130px;
-    object-fit: cover;
-    display: block;
-    border-radius: 10px;
-}
-
-/* Photo Positions - Scattered for 6 images */
-/* Photo Positions - Moved closer to the center/bear */
-/* Top Row */
-.p1 { --rot: -10deg; top: 12%; left: 15%; } /* Moved from 8% to 15% */
-.p2 { --rot: 8deg;  top: 18%; right: 18%; } /* Moved from 10% to 18% */
-
-/* Middle Row */
-.p3 { --rot: 5deg;  top: 42%; left: 12%; } /* Moved from 5% to 12% */
-.p6 { --rot: -8deg; top: 45%; right: 10%; } /* Moved from 4% to 10% */
-
-/* Bottom Row */
-.p4 { --rot: -12deg; bottom: 15%; left: 20%; } /* Moved from 12% to 20% */
-.p5 { --rot: 10deg;  bottom: 14%; right: 16%; } /* Moved from 8% to 16% */
-
-
-/* --- Mobile Fixes --- */
-@media (max-width: 768px) {
-    /* 1. Shrink photos so they don't dominate the screen */
-    .photo-frame {
-        padding: 5px;
-        border-width: 2px;
-    }
-
-    .photo-frame img { 
-        width: 75px; 
-        height: 75px; 
-    }
-
-    /* 2. Reposition photos to the safe "corners" of an iPhone screen */
-    /* Top Left */
-    .p1 { top: 5%; left: 5%; --rot: -8deg; }
-    /* Top Right */
-    .p2 { top: 5%; right: 5%; --rot: 8deg; }
-    /* Middle Left - Tucked away */
-    .p3 { top: 35%; left: 2%; --rot: -5deg; }
-    /* Middle Right - Tucked away */
-    .p6 { top: 35%; right: 2%; --rot: 5deg; }
-    /* Bottom Right */
-    .p5 { bottom: 12%; right: 5%; --rot: 10deg; }
-    
-    /* 3. Hide p4 (bottom left) to keep the "Letter" tap area clear */
-    .p4 { display: none; }
-
-    /* 4. Ensure the Bear stays centered and doesn't get squished */
-    .bear-image { 
-        max-width: 280px; 
-    }
-}
-
-/* --- Modal Styling --- */
+/* --- THE CLEAN & SMOOTH MODAL --- */
 .modal {
-    display: none;
+    display: none; /* Controlled by JS */
     position: fixed;
-    z-index: 2000;
-    left: 0; top: 0; width: 100%; height: 100%;
-    background-color: rgba(255, 192, 203, 0.4); 
-    backdrop-filter: blur(10px);
+    inset: 0;
+    z-index: 9999;
+    background-color: rgba(255, 192, 203, 0.3); /* Soft pink tint */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    /* Transition the backdrop itself */
+    transition: opacity 0.3s ease;
 }
 
 .modal-content {
-    background: #fff;
-    margin: 15vh auto;
-    padding: 40px 30px;
-    width: 85%; max-width: 340px;
-    border-radius: 40px 10px 40px 10px;
-    border: 5px solid #fff;
-    outline: 2px dashed #ffb6c1;
-    outline-offset: -12px;
-    box-shadow: 0 20px 60px rgba(255, 105, 180, 0.3);
-    text-align: center;
-}
-
-@media (max-width: 768px) {
-    .photo-frame img { width: 85px; height: 85px; }
-    .p3, .p4 { display: none; }
-}
-
-
-/* --- 6. Modal (Letter Message) --- */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 2000;
-    left: 0; top: 0; width: 100%; height: 100%;
-    background-color: rgba(255, 192, 203, 0.4); 
-    backdrop-filter: blur(10px);
-}
-
-.modal-content {
+    /* Performance Boosters */
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+    
+    /* The Design */
     background: #fff;
     margin: 15vh auto;
     padding: 40px 30px;
@@ -161,15 +25,62 @@
     max-width: 340px;
     position: relative;
     text-align: center;
+    
+    /* Cute Scrapbook Border */
     border-radius: 40px 10px 40px 10px;
     border: 5px solid #fff;
     outline: 2px dashed #ffb6c1;
     outline-offset: -12px;
-    box-shadow: 0 20px 60px rgba(255, 105, 180, 0.3);
+    box-shadow: 0 20px 60px rgba(255, 105, 180, 0.2);
 }
 
-.modal.show-in .modal-content { animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards; }
-.modal.show-out .modal-content { animation: popOut 0.4s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards; }
+/* --- The Butter-Smooth Animations --- */
+.modal.show-in .modal-content {
+    animation: popIn 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+.modal.show-out .modal-content {
+    animation: popOut 0.3s ease-in forwards;
+}
+
+@keyframes popIn {
+    0% { 
+        transform: translate3d(0, 40px, 0) scale(0.92); 
+        opacity: 0; 
+    }
+    100% { 
+        transform: translate3d(0, 0, 0) scale(1); 
+        opacity: 1; 
+    }
+}
+
+@keyframes popOut {
+    0% { 
+        transform: translate3d(0, 0, 0) scale(1); 
+        opacity: 1; 
+    }
+    100% { 
+        transform: translate3d(0, 30px, 0) scale(0.92); 
+        opacity: 0; 
+    }
+}
+
+/* Close Button Styling */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    color: #ffb6c1;
+    cursor: pointer;
+    line-height: 1;
+}
+
+
+
+
+
+
 
 /* --- 7. Animations --- */
 @keyframes unifiedFloat {
@@ -239,6 +150,10 @@
 
 
 
+
+
+
+
 .music-control {
     position: fixed;
     top: 25px;       /* Pinned to Top */
@@ -287,6 +202,400 @@
         height: 40px;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#jigsawModal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 9999;
+}
+
+#jigsawContent {
+    position: absolute;
+    inset: 2%;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+#forPuzzle {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: #f4f4f4;
+}
+
+#closePuzzle {
+    position: absolute;
+    top: 10px;
+    right: 18px;
+    font-size: 28px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+#menu button,
+#menu select,
+#menu input {
+    padding: 8px 12px;
+    border: 2px solid #ff69b4;
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#menu button {
+    background: #ff69b4;
+    color: white;
+}
+
+#menu button:hover {
+    background: #ff1493;
+}
+
+#menu label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #ff1493;
+}
+
+/* The original #controls button ("open controls") can also be hidden if you want */
+#controls {
+    display: none !important;
+}
+
+
+
+/* ========== THE REFINED BOUTIQUE MENU ========== */
+#menu {
+    position: fixed;
+    top: 20%;
+    right: 0;
+    transform: translateY(-50%) translateX(100%);
+    width: 240px;
+    background: rgba(255, 252, 253, 0.95); /* Creamy white */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px 0 0 20px;
+    padding: 20px 40px;
+    box-shadow: -15px 0 40px rgba(255, 182, 193, 0.15);
+    transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+    z-index: 9999;
+    border: 1px solid rgba(255, 255, 255, 1);
+    border-right: none;
+}
+
+#menu.open {
+    transform: translateY(-50%) translateX(0);
+}
+
+/* THE REFINED RIBBON TOGGLE */
+#menuToggle {
+    position: absolute;
+    left: -32px;
+    top: 40px;
+    width: 32px;
+    height: 90px;
+    /* Soft silk gradient */
+    background: linear-gradient(135deg, #ffb6c1 0%, #ff99aa 100%);
+    border: none;
+    cursor: pointer;
+    /* Ribbon notch + smooth top */
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% 92%, 0% 100%);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: -2px 5px 10px rgba(255, 153, 170, 0.3);
+}
+
+/* The "Stitch" Line on the ribbon */
+#menuToggle::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 0;
+    bottom: 12px;
+    width: 1px;
+    border-left: 1px dashed rgba(255, 255, 255, 0.5); /* Delicate stitching */
+}
+
+/* A tiny elegant icon instead of dots */
+#menuToggle::after {
+    content: '♡';
+    color: white;
+    font-size: 18px;
+    margin-top: -10px;
+    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.05));
+    transition: transform 0.5s ease;
+}
+
+#menuToggle:hover {
+    left: -38px;
+    width: 38px;
+    filter: brightness(1.05);
+}
+
+
+
+/* ========== ELEGANT MENU INTERIOR ========== */
+#menu label {
+    display: block;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #cc8899;
+    margin: 20px 0 8px 0;
+    font-weight: 700;
+}
+
+#menu select, #menu input[type="number"] {
+    width: 100%;
+    background: #fff;
+    border: 1px solid #fce4ec;
+    border-radius: 8px;
+    padding: 8px;
+    color: #888;
+    font-size: 13px;
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+#menu select:focus {
+    border-color: #ffb6c1;
+}
+
+/* Hide the checkbox but style the custom label */
+#menu input[type="checkbox"] {
+    accent-color: #ffb6c1;
+    transform: scale(1.2);
+    margin-right: 8px;
+}
+
+/* This moves the ribbon further left and gives it a tiny tilt when open */
+#menu.open #menuToggle {
+    transform: translateX(50%);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ========== 3. REFINED PHOTO GALLERY (SILKY GLIDE) ========== */
+.photo-gallery {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 2000;
+}
+
+.photo-frame {
+    position: absolute;
+    pointer-events: auto;
+    /* This layer ONLY handles the floating pulse */
+    animation: photoBreath 8s infinite ease-in-out;
+    transition: z-index 0s;
+}
+
+.photo-frame:hover {
+    z-index: 5000; /* Instant pop to front */
+}
+
+.photo-frame img {
+    width: 130px; 
+    height: 130px;
+    object-fit: cover;
+    display: block;
+    background: #fff;
+    padding: 10px 10px 30px 10px;
+    border-radius: 2px;
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 8px 20px rgba(255, 182, 193, 0.2);
+    
+    /* THE MAGIC: This layer handles the smooth lift and rotation */
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.8s ease;
+    will-change: transform;
+}
+
+/* When the FRAME is hovered, the IMAGE glides */
+.photo-frame:hover img {
+    transform: rotate(0deg) scale(1.15) translateY(-25px);
+    box-shadow: 0 30px 60px rgba(255, 105, 180, 0.3);
+    cursor: pointer;
+}
+
+.tape {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+    width: 60px;
+    height: 25px;
+    background: rgba(255, 192, 203, 0.5);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    z-index: 10;
+    pointer-events: none;
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Tape moves up with the image */
+.photo-frame:hover .tape {
+    transform: translateX(-50%) rotate(0deg) translateY(-25px);
+}
+
+/* --- Breathing Animation --- */
+@keyframes photoBreath {
+    0%, 100% { transform: rotate(var(--rot)) translateY(0); }
+    50% { transform: rotate(var(--rot)) translateY(-10px); }
+}
+
+/* --- Desktop Positions --- */
+.p1 { --rot: -10deg; top: 12%; left: 19%; }
+.p2 { --rot: 8deg;  top: 18%; right: 18%; }
+.p3 { --rot: 5deg;  top: 42%; left: 12%; }
+.p6 { --rot: -8deg; top: 45%; right: 10%; }
+.p4 { --rot: -12deg; bottom: 15%; left: 20%; }
+.p5 { --rot: 10deg;  bottom: 14%; right: 16%; }
+
+/* ========== MOBILE ========== */
+@media (max-width: 768px) {
+    .photo-frame img { 
+        width: 85px !important; 
+        height: 85px !important; 
+    }
+    /* Smaller lift for mobile */
+    .photo-frame:hover img {
+        transform: rotate(0deg) scale(1.1) translateY(-15px);
+    }
+    .photo-frame:hover .tape {
+        transform: translateX(-50%) rotate(0deg) translateY(-15px);
+    }
+}
+
+
+
+
+
+
+/* Style the caption to sit on the white bottom area – now with a signature font */
+.photo-caption {
+    position: absolute;
+    bottom: 8px;               /* sits inside the 30px bottom padding */
+    width: 100%;
+    text-align: center;
+    font-size: 15px;           /* slightly larger for script */
+    font-weight: 300;          /* light weight */
+    color: #4a4a4a;
+    font-family: 'Dancing Script', 'Brush Script MT', cursive, sans-serif;
+    background: transparent;
+    pointer-events: none;      /* so the image can still be hovered */
+    z-index: 5;
+    text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); /* smooth hover move */
+}
+
+/* On hover, lift the caption together with the image */
+.photo-frame:hover .photo-caption {
+    transform: translateY(-25px); /* same vertical lift as the image */
+}
+
+
+
+
+
+
+
+
+
+/* --- Tablet (≤1024px) --- */
+@media (max-width: 1024px) {
+    .photo-frame img { width: 100px; height: 100px; }
+    .tape { width: 50px; height: 20px; }
+
+    .p1 { top: 12%; left: 16%; }
+    .p2 { top: 14%; right: 14%; }
+    .p3 { top: 38%; left: 10%; }
+    .p6 { top: 40%; right: 8%; }
+    .p4 { bottom: 12%; left: 15%; }
+    .p5 { bottom: 10%; right: 12%; }
+}
+
+/* --- Mobile (≤600px) --- */
+@media (max-width: 600px) {
+    .photo-frame img { width: 70px; height: 70px; }
+    .tape { width: 35px; height: 15px; }
+
+    /* Rearrange / scale positions to avoid clutter */
+    .p1 { top: 21%; left: 12%; }
+    .p2 { top: 17%; right: 15%; }
+    .p3 { top: 46%; left: 7%; }
+    .p6 { top: 42%; right: 9%; }
+    .p4 { bottom: 5%; left: 4%; }
+    .p5 { bottom: 5%; right: 4%; }
+
+    /* Optional: scale animation subtle for small screens */
+    .photo-frame { animation: photoSubtlePulse 5s infinite ease-in-out; }
+}
+
+
+
+
+
 
 
 

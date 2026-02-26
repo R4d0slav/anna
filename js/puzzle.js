@@ -1491,12 +1491,7 @@ function imageLoaded() {
     if (puzzle.restoring) {
         delete puzzle.restoring
         /* check image natural size against expected one */
-        if (mround(puzzle.srcImage.naturalWidth) != puzzle.restoredState.base[6] ||
-            mround(puzzle.srcImage.naturalHeight) != puzzle.restoredState.base[7]) {
-
-            popup(["Something went wrong.", "I could not restore the game. Sorry for the inconvenience."]);
-            event.event = "wrongImage";
-        } // if wrong size
+     
     } // if restoring
     events.push(event);
 } // imageLoaded
@@ -1548,14 +1543,7 @@ let events = []; // queue for events
         let event;
         if (events.length) event = events.shift(); // read event from queue
         if (event && event.event == "reset") state = 0;
-        if ((event?.event == "timeout") && (state == 10 || state == 15) && !puzzle.imageLoaded) {
-            // create empty image to avoid blocking situation
-            puzzle.srcImage.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAJUlEQVR4AeyQMQ0AAAyDlmrDv6XNwYKAkvBxEWCNGUnDd5TecwAAAP//4lOPOQAAAAZJREFUAwBRdRIDdhSIewAAAABJRU5ErkJggg==";
-            state = 10;
-            popup(["Something went wrong loading this image.",
-                "You can still try to play with local images or saved games."
-            ])
-        } // timeout event
+ 
         // resize event
         if (event?.event == "resize") {
 
@@ -1883,17 +1871,7 @@ window.addEventListener("resize", event => {
 });
 
 puzzle = new Puzzle({ container: "forPuzzle" });
-autoStart = isMiniature(); // used for nice miniature in CodePen
-
+autoStart = isMiniature(); 
 loadInitialFile();
 requestAnimationFrame(animate);
 
-
-
-
-function loadInitialFile() {
-    let defaultImage = "...";
-    puzzle.imageLoaded = false;
-    loadRemoteFile(defaultImage);
-    setTimeout(() => events.push({ event: "timeout" }), 5000);
-}

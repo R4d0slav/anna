@@ -17,18 +17,6 @@ body {
 }
 
 
-/* --- 8. Responsive Fixes --- */
-@media (max-width: 768px) {
-    .photo-frame img { width: 80px; height: 80px; }
-    .p1 { top: 5%; left: 5%; }
-    .p2 { top: 5%; right: 5%; }
-    .p3, .p4 { display: none; } /* Hide middle photos to clear bear space */
-    .p5 { bottom: 5%; left: 5%; }
-    .bear-image { max-width: 300px; }
-    .heart-cloud-pile { width: 350px; }
-}
-
-
 
 
 

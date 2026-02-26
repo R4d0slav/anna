@@ -64,3 +64,61 @@
 .drift-heart:nth-child(10) { left: 15%; animation-duration: 13s; animation-delay: 4s; opacity: 0.4; }
 .drift-heart:nth-child(11) { left: 75%; animation-duration: 7s;  animation-delay: 6s; font-size: 40px; }
 .drift-heart:nth-child(12) { left: 55%; animation-duration: 15s; animation-delay: 1s; }
+
+
+
+
+
+/* Anniversary Top Container */
+.anniversary-top {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 1000;
+}
+
+/* Text and Heart */
+.text-cloud {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-size: 3rem;
+    color: #ff69b4;
+    text-shadow: 0 3px 12px rgba(255,182,193,0.6);
+}
+
+#anniversaryHeart {
+    cursor: pointer;
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+#anniversaryHeart:hover {
+    transform: scale(1.3);
+}
+
+/* Gentle bounce for the whole text */
+.anniversary-top h1, .text-cloud {
+    animation: gentleBounce 3s infinite;
+}
+
+@keyframes gentleBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+/* Flying hearts */
+.flying-heart {
+    position: fixed;
+    font-size: 1.5rem;
+    pointer-events: none;
+    animation: flyOut 1.2s ease-out forwards;
+}
+
+@keyframes flyOut {
+    0% { transform: translate(0, 0) scale(1); opacity: 1; }
+    100% { 
+        transform: translate(var(--x), var(--y)) scale(0.7); 
+        opacity: 0; 
+    }
+}

@@ -1,63 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Anna ❤️</title>
-
-<link rel="stylesheet" href="../css/home.css">
-<link rel="stylesheet" href="../css/atmosphere.css">
-<link rel="stylesheet" href="../css/bear.css">
-<link rel="stylesheet" href="../css/ui-elements.css">
-
-<style>
-/* ================= MODAL ================= */
-
-#jigsawModal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.7);
-    z-index: 9999;
-}
-
-#jigsawContent {
-    position: absolute;
-    inset: 2%;
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-#forPuzzle {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    background: #f4f4f4;
-}
-
-#closePuzzle {
-    position: absolute;
-    top: 10px;
-    right: 18px;
-    font-size: 28px;
-    cursor: pointer;
-    z-index: 10;
-}
-
-/* Hide engine UI completely */
-#menu,
-#controls {
-    display: none !important;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rade 💖 Anna</title>
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/atmosphere.css">
+    <link rel="stylesheet" href="../css/bear.css">
+    <link rel="stylesheet" href="../css/ui-elements.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@300;400&display=swap" rel="stylesheet">
 </head>
-
 <body>
+        
+<div class="anniversary-top" id="anniversaryTop">
+    <div class="text-cloud">
+        1 Month <span id="anniversaryHeart">💝</span>
+    </div>
+</div>
 
-<!-- ========== GALLERY ========== -->
-
-<div class="heart-atmosphere">
+    <div class="heart-atmosphere">
         <div class="pulse-heart p1">💖</div>
         <div class="pulse-heart p2">💝</div>
         <div class="pulse-heart p3">💓</div>
@@ -75,32 +36,39 @@
 
     <div class="photo-gallery">
         <div class="photo-frame p1">
-            <img src="../assets/images/image1.jpeg" alt="Us">
             <div class="tape"></div>
+            <img src="../assets/images/image1.jpeg" alt="Us">
+            <span class="photo-caption">Koper</span>
         </div>
         <div class="photo-frame p2">
+            <div class="tape"></div>
             <img src="../assets/images/image2.jpeg" alt="Us">
+            <span class="photo-caption">Bled</span>
         </div>
         <div class="photo-frame p3">
-            <img src="../assets/images/image3.jpeg" alt="Us">
             <div class="tape"></div>
+            <img src="../assets/images/image3.jpeg" alt="Us">
+            <span class="photo-caption">Bohinj</span>
         </div>
         <div class="photo-frame p4">
+            <div class="tape"></div>
             <img src="../assets/images/image4.jpeg" alt="Us">
+            <span class="photo-caption">Bohinj</span>
         </div>
         <div class="photo-frame p5">
-            <img src="../assets/images/image5.jpeg" alt="Us">
             <div class="tape"></div>
+            <img src="../assets/images/image5.jpeg" alt="Us">
+            <span class="photo-caption">Trieste</span>
         </div>
         <div class="photo-frame p6">
-            <img src="../assets/images/image6.jpeg" alt="Us">
             <div class="tape"></div>
+            <img src="../assets/images/image6.jpeg" alt="Us">
+            <span class="photo-caption">Koper</span>
         </div>
     </div>
 
 
 
-    <!-- Main bear container -->
    <div class="bear-container">
         <div class="heart-cloud-pile back-pile">
             <img src="../assets/images/heart.png" class="heart heart-7">
@@ -147,41 +115,52 @@
         <span class="close-btn">&times;</span>
         
         <div class="message-body">
-            <div class="stamp">💖</div>
+            <div class="stamp">🎀</div>
             <h2 class="handwritten">Szia Anna! ✨</h2>
             
             <div class="text-content">
-                <p>Happy 1 month anniversary!</p>
-                <p>I love you so, so much... You make me the happiest person ever.</p>
+                <p>Happy one month anniversary...</p>
+                <p>I love you so, so much. You make me the happiest person ever, and I'm so lucky to have you.</p>
             </div>
             
             <div class="divider">
-                <span class="dot"></span><span class="heart-dot">♥</span><span class="dot"></span>
+                <span class="dot"></span><span class="heart-dot">💖</span><span class="dot"></span>
             </div>
             
             <div class="hungarian-wrap">
-                <p>Boldog egy hónapos évfordulót!</p>
-                <p>Teljes szívemből szeretlek,</p>
-                <p class="signature">a Te Rade-d</p>
+                <p>Teljes szívemből szeretlek!</p>
+                <p class="signature">Your love, Rade</p>
             </div>
         </div>
     </div>
 </div>
 
-
 <!-- ========== REQUIRED BY puzzle.js (hidden but MUST exist) ========== -->
 
 <div id="menu">
-    <input id="nbpieces" type="number" value="24">
-    <button id="start"></button>
-    <button id="stop"></button>
-    <select id="shape"><option>1</option></select>
-    <select id="drawmode"><option value="1">1</option></select>
-    <input id="enablerot" type="checkbox">
-    <div id="load"></div>
-    <div id="default"></div>
-    <button id="help"></button>
-    <button id="helpstorage"></button>
+    <button id="menuToggle">🌸</button>
+    <label>
+        <input id="enablerot" type="checkbox"> Enable Rotation
+    </label>
+    <select id="shape">
+        <option value="1">Shape 1</option>
+        <option value="2">Shape 2</option>
+        <option value="3">Shape 3</option>
+        <option value="4">Shape 4</option>
+    </select>
+    <input id="nbpieces" type="number" value="24" min="4" max="200">
+    <select id="drawmode">
+        <option value="0">Emboss</option>
+        <option value="1">Internal</option>
+        <option value="2">Both</option>
+    </select>
+    <button id="start" style="display:none;">Start</button>
+    <button id="stop" disabled style="display:none;">Stop</button>
+    <button id="help" style="display:none;">Help</button>
+    <button id="helpstorage" style="display:none;">Storage Help</button>
+    <!-- Hidden elements required by engine but not needed for UI -->
+    <div id="load" style="display:none;"></div>
+    <div id="default" style="display:none;"></div>
 </div>
 
 <div id="controls"></div>
@@ -201,148 +180,10 @@
 <!-- ========== LOAD ENGINE ========== -->
 
 <script src="../js/puzzle.js"></script>
+<script src="../js/bear.js"></script>
+<script src="../js/music.js"></script>
+<script src="../js/photos.js"></script>
+<script src="../js/atmosphere.js"></script>
 
-<script>
-const modal = document.getElementById("jigsawModal");
-const closeBtn = document.getElementById("closePuzzle");
-
-closeBtn.onclick = () => modal.style.display = "none";
-
-window.onclick = (e) => {
-    if (e.target === modal) modal.style.display = "none";
-};
-
-
-// =========================
-// IMAGE CLICK → START PUZZLE
-// =========================
-
-document.querySelectorAll(".photo-frame img").forEach(img => {
-
-    img.style.cursor = "pointer";
-
-    img.addEventListener("click", () => {
-
-        if (typeof puzzle === "undefined") {
-            console.error("Puzzle not loaded.");
-            return;
-        }
-
-        // 1️⃣ Show modal FIRST
-        modal.style.display = "block";
-
-        // 2️⃣ Force browser to calculate layout
-        document.getElementById("forPuzzle").offsetHeight;
-
-        // 3️⃣ Reset state
-        puzzle.imageLoaded = false;
-
-        // 4️⃣ Wait for image to load before triggering state machine
-        const startPuzzleAfterLoad = function () {
-
-            const pieces = Number(document.getElementById("nbpieces").value) || 24;
-
-            events.push({
-                event: "nbpieces",
-                nbpieces: pieces
-            });
-
-            puzzle.srcImage.removeEventListener("load", startPuzzleAfterLoad);
-        };
-
-        puzzle.srcImage.addEventListener("load", startPuzzleAfterLoad);
-
-        // 5️⃣ Load clicked image
-        if (typeof loadRemoteFile === "function") {
-            loadRemoteFile(img.src);
-        } else {
-            puzzle.srcImage.src = img.src;
-        }
-    });
-});
-</script>
-
-<!-- ========== LETTER MODAL (with its own scope) ========== -->
-<script>
-(function() {
-    const modal = document.getElementById("letterModal");
-    const letter = document.querySelector(".letter-item");
-    const closeBtn = document.querySelector(".close-btn");
-
-    letter.onclick = function() {
-        modal.style.display = "block";
-        modal.classList.remove("show-out");
-        modal.classList.add("show-in");
-    }
-
-    function closeModal() {
-        modal.classList.remove("show-in");
-        modal.classList.add("show-out");
-        setTimeout(() => {
-            modal.style.display = "none";
-        }, 400);
-    }
-
-    closeBtn.onclick = closeModal;
-
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            closeModal();
-        }
-    }
-})();
-</script>
-
-<!-- ========== FLOWER PETALS (no conflict) ========== -->
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const flower = document.querySelector('.flower-item');
-    flower.addEventListener('click', (e) => {
-        const petalCount = 18;
-        const petalEmojis = ['🌸', '💮', '🌺', '✨'];
-        for (let i = 0; i < petalCount; i++) {
-            const petal = document.createElement('div');
-            petal.className = 'petal';
-            petal.innerHTML = petalEmojis[Math.floor(Math.random() * petalEmojis.length)];
-            const startX = e.clientX;
-            const startY = e.clientY;
-            petal.style.left = startX + 'px';
-            petal.style.top = startY + 'px';
-            petal.style.fontSize = (Math.random() * 15 + 15) + 'px';
-            document.body.appendChild(petal);
-            const destinationX = (Math.random() - 0.5) * 400;
-            const destinationY = Math.random() * 400 + 200;
-            const rotation = Math.random() * 720 - 360;
-            const animation = petal.animate([
-                { transform: 'translate(0,0) rotate(0deg)', opacity: 1 },
-                { transform: `translate(${destinationX}px,${destinationY}px) rotate(${rotation}deg)`, opacity: 0 }
-            ], {
-                duration: 2000 + Math.random() * 1000,
-                easing: 'cubic-bezier(0.25,0.46,0.45,0.94)',
-                fill: 'forwards'
-            });
-            animation.onfinish = () => petal.remove();
-        }
-    });
-});
-</script>
-
-<!-- ========== MUSIC TOGGLE ========== -->
-<script>
-function toggleMusic() {
-    const audio = document.getElementById('bg-music');
-    const btn = document.querySelector('.music-control');
-    const icon = document.getElementById('music-icon');
-    if (audio.paused) {
-        audio.play();
-        btn.classList.add('playing');
-        icon.innerHTML = '🎶';
-    } else {
-        audio.pause();
-        btn.classList.remove('playing');
-        icon.innerHTML = '🎵';
-    }
-}
-</script>
 </body>
 </html>

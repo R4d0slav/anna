@@ -136,3 +136,49 @@
     user-select: none;
     will-change: transform, opacity; /* Smoother animation */
 }
+
+
+
+
+
+
+
+
+/* Base (Laptop/Desktop) */
+.bear-image { max-width: 350px; }
+.heart-cloud-pile { width: 450px; height: 150px; }
+.flower-item { width: 35%; left: 62%; bottom: 28%; }
+.letter-item { width: 22%; right: 67%; bottom: 25%; }
+
+/* --- Tablet --- */
+@media (max-width: 1024px) {
+    .bear-image { max-width: 300px; }
+    .heart-cloud-pile { width: 350px; height: 120px; }
+    
+    /* Hearts positions can scale using percentages */
+    .heart { width: 90px; }
+
+    .flower-item { width: 30%; left: 60%; bottom: 25%; }
+    .letter-item { width: 18%; right: 65%; bottom: 22%; }
+
+    .bear-container { transform: translateY(120px); }
+
+}
+
+/* --- Mobile --- */
+@media (max-width: 600px) {
+    .bear-image { max-width: 220px; }
+    .heart-cloud-pile { width: 250px; height: 90px; }
+
+    .heart { width: 70px; }
+
+    .flower-item { width: 25%; left: 55%; bottom: 20%; }
+    .letter-item { width: 16%; right: 60%; bottom: 18%; }
+
+    .bear-container { transform: translateY(160px); }
+
+    /* Anniversary top scaling */
+    .anniversary-top .text-cloud { font-size: 2rem; }
+}
+
+
