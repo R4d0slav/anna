@@ -91,6 +91,8 @@
     cursor: pointer;
     display: inline-block;
     transition: transform 0.2s ease;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 #anniversaryHeart:hover {
@@ -123,4 +125,21 @@
         transform: translate(var(--x), var(--y)) scale(0.7); 
         opacity: 0; 
     }
+}
+
+
+
+/* --- MOBILE FIXES --- */
+@media (max-width: 600px) {
+    /* Fix: Separate selectors so they actually shrink */
+    .pulse-heart {
+        font-size: 25px !important; /* Smaller pulses for small screens */
+    }
+    
+    .drift-heart {
+        font-size: 18px !important; /* Smaller drifting hearts */
+    }
+
+    /* Move pulse hearts slightly inward so they aren't cut off by screen edges */
+    .pulse-heart.p1 { top: 13%; left: 10%; }
 }
