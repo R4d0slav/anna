@@ -134,7 +134,7 @@
 .petal {
     position: fixed;
     pointer-events: none; /* Mouse goes through them */
-    z-index: 99999;
+    z-index: 999;
     user-select: none;
     will-change: transform, opacity; /* Smoother animation */
 }

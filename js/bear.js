@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         letter.addEventListener(ev, () => removeHoverAndBlur(letter));
     });
 
-    // --- Flower petals ---
+    // --- Flower petals effect (click) ---
     function triggerFlowerPetals() {
         removeHoverAndBlur(flower);
         const petalCount = 18;
@@ -63,6 +63,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     flower.addEventListener('click', triggerFlowerPetals);
+
+    // --- Heart effect (click) ---
+    heartEl.addEventListener('click', () => {
+        for (let i = 0; i < 10; i++) {
+            const heart = document.createElement('div');
+            heart.classList.add('flying-heart');
+            heart.textContent = ['💖','💝','💗','💕','✨'][Math.floor(Math.random()*5)];
+            document.body.appendChild(heart);
+
+            const rect = heartEl.getBoundingClientRect();
+            heart.style.left = `${rect.left + rect.width/2}px`;
+            heart.style.top = `${rect.top + rect.height/2}px`;
+
+            const angle = Math.random() * Math.PI * 2;
+            const radius = 120 + Math.random() * 50;
+            heart.style.setProperty('--x', `${Math.cos(angle)*radius}px`);
+            heart.style.setProperty('--y', `${Math.sin(angle)*radius}px`);
+
+            heart.addEventListener('animationend', () => heart.remove());
+        }
+    });
 
     // --- Letter modal ---
     letter.addEventListener('click', () => {
@@ -102,28 +123,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 musicControl.click();
 
                 interval = setInterval(() => {
-                    // Hearts
-                    for (let i = 0; i < 10; i++) {
-                        const heart = document.createElement('div');
-                        heart.classList.add('flying-heart');
-                        heart.textContent = ['💖','💝','💗','💕','✨'][Math.floor(Math.random()*5)];
-                        document.body.appendChild(heart);
-
-                        const rect = heartEl.getBoundingClientRect();
-                        heart.style.left = `${rect.left + rect.width/2}px`;
-                        heart.style.top = `${rect.top + rect.height/2}px`;
-
-                        const angle = Math.random() * Math.PI * 2;
-                        const radius = 120 + Math.random() * 50;
-                        heart.style.setProperty('--x', `${Math.cos(angle)*radius}px`);
-                        heart.style.setProperty('--y', `${Math.sin(angle)*radius}px`);
-
-                        heart.addEventListener('animationend', () => heart.remove());
-                    }
-
-                    // Flower petals
-                    triggerFlowerPetals();
-
+                    // Call the existing click handlers
+                    heartEl.click();
+                    flower.click();
                 }, 200); // every 200ms
 
             } else {
