@@ -603,3 +603,19 @@
 
 
 
+/* --- Make interactive elements non-selectable --- */
+.bear-container,
+.bear-wrapper,
+.bear-image,
+.flower-item,
+.letter-item,
+.heart-cloud-pile,
+.heart,
+.petal,
+#anniversaryHeart {
+    user-select: none;          /* Standard */
+    -webkit-user-select: none;  /* Safari */
+    -moz-user-select: none;     /* Firefox */
+    -ms-user-select: none;      /* IE10+ */
+    pointer-events: auto;       /* keep clickable/touchable */
+}

@@ -199,3 +199,21 @@
         filter: drop-shadow(0 5px 5px rgba(0,0,0,0.05));
     }
 }
+
+
+
+.bear-image:hover {
+    cursor: pointer;
+
+    /* Lift slightly + subtle rotation */
+    transform: translateY(-5px) scale(1.02) rotate(-1deg);
+
+    /* Glow effect */
+    filter: drop-shadow(0 0 10px rgba(255, 192, 203, 0.5))
+            drop-shadow(0 0 20px rgba(255, 105, 180, 0.6))
+            drop-shadow(0 0 35px rgba(255, 182, 193, 0.3));
+
+    /* Smooth transition */
+    transition: transform 0.3s cubic-bezier(0.1, 0.5, 0.2, 1),
+                filter 0.1s ease-in-out;
+}

@@ -104,86 +104,86 @@
     </div>
 
     <div class="music-control" onclick="toggleMusic()">
-    <span id="music-icon">🎵</span>
-    <audio id="bg-music" loop>
-        <source src="./assets/sounds/music.mp3" type="audio/mpeg">
-    </audio>
-</div>
+        <span id="music-icon">🎵</span>
+        <audio id="bg-music" loop>
+            <source src="./assets/sounds/music.mp3" type="audio/mpeg">
+        </audio>
+    </div>
 
-<div id="letterModal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        
-        <div class="message-body">
-            <div class="stamp">🎀</div>
-            <h2 class="handwritten">Szia Anna! ✨</h2>
+    <div id="letterModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
             
-            <div class="text-content">
-                <p>Happy one month anniversary...</p>
-                <p>I love you so, so much. You make me the happiest person ever, and I'm so lucky to have you.</p>
-            </div>
-            
-            <div class="divider">
-                <span class="dot"></span><span class="heart-dot">💖</span><span class="dot"></span>
-            </div>
-            
-            <div class="hungarian-wrap">
-                <p>Teljes szívemből szeretlek!</p>
-                <p class="signature">Your love, Rade</p>
+            <div class="message-body">
+                <div class="stamp">🎀</div>
+                <h2 class="handwritten">Szia Anna! ✨</h2>
+                
+                <div class="text-content">
+                    <p>Happy one month anniversary...</p>
+                    <p>I love you so, so much. You make me the happiest person ever, and I'm so lucky to have you.</p>
+                </div>
+                
+                <div class="divider">
+                    <span class="dot"></span><span class="heart-dot">💖</span><span class="dot"></span>
+                </div>
+                
+                <div class="hungarian-wrap">
+                    <p>Teljes szívemből szeretlek!</p>
+                    <p class="signature">Your love, Rade</p>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- ========== REQUIRED BY puzzle.js (hidden but MUST exist) ========== -->
+    <!-- ========== REQUIRED BY puzzle.js (hidden but MUST exist) ========== -->
 
-<div id="menu">
-    <button id="menuToggle">🌸</button>
-    <label>
-        <input id="enablerot" type="checkbox"> Enable Rotation
-    </label>
-    <select id="shape">
-        <option value="1">Shape 1</option>
-        <option value="2">Shape 2</option>
-        <option value="3">Shape 3</option>
-        <option value="4">Shape 4</option>
-    </select>
-    <input id="nbpieces" type="number" value="24" min="4" max="200">
-    <select id="drawmode">
-        <option value="0">Emboss</option>
-        <option value="1">Internal</option>
-        <option value="2">Both</option>
-    </select>
-    <button id="start" style="display:none;">Start</button>
-    <button id="stop" disabled style="display:none;">Stop</button>
-    <button id="help" style="display:none;">Help</button>
-    <button id="helpstorage" style="display:none;">Storage Help</button>
-    <!-- Hidden elements required by engine but not needed for UI -->
-    <div id="load" style="display:none;"></div>
-    <div id="default" style="display:none;"></div>
-</div>
-
-<div id="controls"></div>
-
-
-<!-- ========== PUZZLE MODAL ========== -->
-
-<div id="jigsawModal">
-    <div id="jigsawContent">
-        <div id="closePuzzle">✕</div>
-        <div id="forPuzzle"></div>
+    <div id="menu">
+        <button id="menuToggle">🌸</button>
+        <label>
+            <input id="enablerot" type="checkbox"> Enable Rotation
+        </label>
+        <select id="shape">
+            <option value="1">Shape 1</option>
+            <option value="2">Shape 2</option>
+            <option value="3">Shape 3</option>
+            <option value="4">Shape 4</option>
+        </select>
+        <input id="nbpieces" type="number" value="24" min="4" max="200">
+        <select id="drawmode">
+            <option value="0">Emboss</option>
+            <option value="1">Internal</option>
+            <option value="2">Both</option>
+        </select>
+        <button id="start" style="display:none;">Start</button>
+        <button id="stop" disabled style="display:none;">Stop</button>
+        <button id="help" style="display:none;">Help</button>
+        <button id="helpstorage" style="display:none;">Storage Help</button>
+        <!-- Hidden elements required by engine but not needed for UI -->
+        <div id="load" style="display:none;"></div>
+        <div id="default" style="display:none;"></div>
     </div>
-</div>
+
+    <div id="controls"></div>
+
+
+    <!-- ========== PUZZLE MODAL ========== -->
+
+    <div id="jigsawModal">
+        <div id="jigsawContent">
+            <div id="closePuzzle">✕</div>
+            <div id="forPuzzle"></div>
+        </div>
+    </div>
 
 
 
-<!-- ========== LOAD ENGINE ========== -->
+    <!-- ========== LOAD ENGINE ========== -->
 
-<script src="./js/puzzle.js"></script>
-<script src="./js/bear.js"></script>
-<script src="./js/music.js"></script>
-<script src="./js/photos.js"></script>
-<script src="./js/atmosphere.js"></script>
+    <script src="./js/puzzle.js"></script>
+    <script src="./js/bear.js"></script>
+    <script src="./js/music.js"></script>
+    <script src="./js/photos.js"></script>
+    <script src="./js/atmosphere.js"></script>
 
 </body>
 </html>
