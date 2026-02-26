@@ -499,7 +499,7 @@
 
 /* Tape moves up with the image */
 .photo-frame:hover .tape {
-    transform: translateX(-50%) rotate(0deg) translateY(-25px);
+    transform: translateX(-50%) rotate(0deg) translateY(-40px);
 }
 
 /* --- Breathing Animation --- */

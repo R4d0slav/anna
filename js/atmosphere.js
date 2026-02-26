@@ -20,6 +20,4 @@ heartEl.addEventListener('click', () => {
     }
 
     // Tiny pop effect on click
-    heartEl.style.transform = 'scale(1.4)';
-    setTimeout(() => heartEl.style.transform = 'scale(1.3)', 150); // return to hover scale
 });
