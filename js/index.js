@@ -22,7 +22,7 @@ function checkPassword() {
 
         // Redirect to home page after a short delay
         setTimeout(() => {
-            window.location.href = 'pages/home.html';
+            window.location.href = './home.html';
         }, 1500);
 
     } else {

@@ -150,7 +150,7 @@
 .bear-image { max-width: 350px; }
 .heart-cloud-pile { width: 450px; height: 150px; }
 .flower-item { width: 35%; left: 62%; bottom: 28%; }
-.letter-item { width: 22%; right: 67%; bottom: 25%; }
+.letter-item { width: 22%; right: 67%; bottom: 27%; }
 
 /* --- Tablet --- */
 @media (max-width: 1024px) {
