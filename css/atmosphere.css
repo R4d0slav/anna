@@ -113,6 +113,8 @@
     font-size: 1.5rem;
     pointer-events: none;
     animation: flyOut 1.2s ease-out forwards;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 @keyframes flyOut {

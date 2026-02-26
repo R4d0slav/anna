@@ -77,6 +77,8 @@
     cursor: pointer;
     /* Clean start shadow */
     filter: drop-shadow(0 5px 5px rgba(0,0,0,0.05));
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .letter-item:hover { 

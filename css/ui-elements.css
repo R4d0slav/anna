@@ -449,6 +449,8 @@
     /* This layer ONLY handles the floating pulse */
     animation: photoBreath 8s infinite ease-in-out;
     transition: z-index 0s;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .photo-frame:hover {
