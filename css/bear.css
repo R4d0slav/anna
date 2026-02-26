@@ -65,14 +65,11 @@
 /* --- Props (Flower & Letter) --- */
 
 /* 1. Base Styles & Shared Transitions */
-.flower-item, .letter-item { 
-    position: absolute; 
-    /* Slow 1.2s transition for that dreamy, smooth rotation/glow */
-    transition: all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
+
 
 
 .letter-item { 
+    position: absolute; 
     width: 22%; 
     right: 67%; 
     bottom: 25%; 
@@ -91,6 +88,7 @@
 }
 
 /* --- Flower Item Styles --- */
+
 .flower-item {
     position: absolute;
     width: 35%;
@@ -99,6 +97,8 @@
     transform: rotate(20deg);
     z-index: 30;
     cursor: pointer;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
 
     
     /* Smooth transition for the glow */
@@ -114,7 +114,7 @@
     animation-play-state: paused;
 
     /* 2. Subtle lift */
-    transform: rotate(25deg) scale(1.1) translateY(-5px) !important;
+    transform: rotate(25deg) scale(1.1) translateY(-5px);
     
     /* 3. THE GLOW: Added !important to force it over the animation */
     filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.9)) 
@@ -152,34 +152,26 @@
 
 /* --- Tablet --- */
 @media (max-width: 1024px) {
-    .bear-image { max-width: 300px; }
-    .heart-cloud-pile { width: 350px; height: 120px; }
-    
-    /* Hearts positions can scale using percentages */
-    .heart { width: 90px; }
 
-    .flower-item { width: 30%; left: 60%; bottom: 25%; }
-    .letter-item { width: 18%; right: 65%; bottom: 22%; }
-
-    .bear-container { transform: translateY(120px); }
+    .bear-container { transform: translateY(120px) scale(0.8); }
 
 }
 
 /* --- Mobile --- */
 @media (max-width: 600px) {
-    .bear-image { max-width: 220px; }
-    .heart-cloud-pile { width: 250px; height: 90px; }
-
-    .heart { width: 70px; }
-
-    .flower-item { width: 25%; left: 55%; bottom: 20%; }
-    .letter-item { width: 16%; right: 60%; bottom: 18%; }
-
-    .bear-container { transform: translateY(160px); }
 
     /* Anniversary top scaling */
     .anniversary-top .text-cloud { font-size: 2rem; }
+
+    .bear-container { transform: translateY(160px) scale(0.6); }
+
 }
+
+
+
+
+
+
 
 
 

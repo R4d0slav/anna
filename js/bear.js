@@ -1,6 +1,7 @@
 
 
 document.addEventListener('DOMContentLoaded', () => {
+
     const flower = document.querySelector('.flower-item');
     flower.addEventListener('click', (e) => {
         const petalCount = 18;
@@ -29,7 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
             animation.onfinish = () => petal.remove();
         }
     });
-
 
     (function() {
         const modal = document.getElementById("letterModal");
