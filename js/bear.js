@@ -1,9 +1,45 @@
-
-
 document.addEventListener('DOMContentLoaded', () => {
-
     const flower = document.querySelector('.flower-item');
+    const letter = document.querySelector('.letter-item');
+    const modal = document.getElementById("letterModal");
+    const closeBtn = document.querySelector(".close-btn");
+
+    // --- Detect hover support ---
+    const hasHover = window.matchMedia('(hover: hover)').matches;
+
+    // --- Hover effects (mouse only) ---
+    if (hasHover) {
+        // Flower
+        flower.addEventListener('mouseenter', () => flower.classList.add('hover'));
+        flower.addEventListener('mouseleave', () => flower.classList.remove('hover'));
+
+        // Letter
+        letter.addEventListener('mouseenter', () => letter.classList.add('hover'));
+        letter.addEventListener('mouseleave', () => letter.classList.remove('hover'));
+    }
+
+    // --- Kill any lingering hover class on touch interactions ---
+    function removeHoverAndBlur(element) {
+        element.classList.remove('hover');
+        element.blur();
+    }
+
+    // Touch events for flower
+    flower.addEventListener('touchstart', () => removeHoverAndBlur(flower));
+    flower.addEventListener('touchend', () => removeHoverAndBlur(flower));
+    flower.addEventListener('touchcancel', () => removeHoverAndBlur(flower));
+
+    // Touch events for letter
+    letter.addEventListener('touchstart', () => removeHoverAndBlur(letter));
+    letter.addEventListener('touchend', () => removeHoverAndBlur(letter));
+    letter.addEventListener('touchcancel', () => removeHoverAndBlur(letter));
+
+    // --- Flower click (petal explosion) ---
     flower.addEventListener('click', (e) => {
+        // Clean up any hover class and blur
+        removeHoverAndBlur(flower);
+
+        // --- Petal animation (unchanged) ---
         const petalCount = 18;
         const petalEmojis = ['🌸', '💮', '🌺', '✨'];
         for (let i = 0; i < petalCount; i++) {
@@ -31,31 +67,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    (function() {
-        const modal = document.getElementById("letterModal");
-        const letter = document.querySelector(".letter-item");
-        const closeBtn = document.querySelector(".close-btn");
+    // --- Letter click (modal) ---
+    letter.addEventListener('click', (e) => {
+        // Clean up any hover class and blur
+        removeHoverAndBlur(letter);
 
-        letter.onclick = function() {
-            modal.style.display = "block";
-            modal.classList.remove("show-out");
-            modal.classList.add("show-in");
-        }
+        // Open modal
+        modal.style.display = "block";
+        modal.classList.remove("show-out");
+        modal.classList.add("show-in");
+    });
 
-        function closeModal() {
-            modal.classList.remove("show-in");
-            modal.classList.add("show-out");
-            setTimeout(() => {
-                modal.style.display = "none";
-            }, 400);
-        }
+    // --- Modal close functions (unchanged) ---
+    function closeModal() {
+        modal.classList.remove("show-in");
+        modal.classList.add("show-out");
+        setTimeout(() => {
+            modal.style.display = "none";
+        }, 400);
+    }
 
-        closeBtn.onclick = closeModal;
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                closeModal();
-            }
-        }
-    })();
+    closeBtn.addEventListener('click', closeModal);
+    window.addEventListener('click', (event) => {
+        if (event.target == modal) closeModal();
+    });
 });
